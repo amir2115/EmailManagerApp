@@ -2,10 +2,10 @@ package com.example.common_compose.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Shapes
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import com.ompfinex.app.common_ui_compose.theme.Shapes
 
 private val DarkColorPalette = darkColors(
     primary = PRIMARY_COLOR600,
@@ -47,7 +47,6 @@ fun EmailManagerTheme(
     MaterialTheme(
         colors = colors,
         typography = typography,
-        shapes = Shapes,
         content = content
     )
 }
