@@ -1,6 +1,6 @@
 package com.example.domain.model.auth
 
 data class GetTokenRequest(
-    val username: String,
+    val address: String,
     val password: String
 )
