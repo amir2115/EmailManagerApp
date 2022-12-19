@@ -2,9 +2,11 @@ package com.example.ui.home
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import collectAsState
@@ -36,7 +38,6 @@ internal fun HomeScreen(
     }
 }
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 internal fun HomeScreen(
     scaffoldState: ScaffoldState,
@@ -47,7 +48,7 @@ internal fun HomeScreen(
         scaffoldState = scaffoldState,
         backgroundColor = MaterialTheme.colors.background
     ) {
-        Column {
+        Column(modifier = Modifier.padding(it)) {
             Text(text = "Hi")
         }
     }
