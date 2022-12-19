@@ -2,7 +2,6 @@ package com.example.emailmanagerapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.emailmanagerapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

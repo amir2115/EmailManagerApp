@@ -1,4 +1,4 @@
-package com.example.data.preferences
+package com.example.domain.preferences
 
 interface PreferencesStorage {
     var tokenCode: String?

@@ -1,6 +1,7 @@
 package com.example.data.preferences
 
 import android.content.SharedPreferences
+import com.example.domain.preferences.PreferencesStorage
 import javax.inject.Inject
 import javax.inject.Singleton
 

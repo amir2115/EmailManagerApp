@@ -8,7 +8,7 @@ import com.example.data.entity.MessageEntity
     entities = [
         MessageEntity::class,
     ],
-    version = 2
+    version = 1
 )
 abstract class EmailRoomDatabase : RoomDatabase(), EmailDatabase {
     override fun clearData() = clearAllTables()
