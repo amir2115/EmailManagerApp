@@ -19,9 +19,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "SERVER_URL", "\"https://api.mail.gw\"")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "SERVER_URL", "\"https://api.mail.gw\"")
         }
     }
     compileOptions {
@@ -37,6 +41,10 @@ android {
 }
 
 dependencies {
+    implementation project(':data')
+    implementation project(':domain')
+    implementation project(':ui')
+
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
@@ -61,4 +69,6 @@ dependencies {
 
     // Coil
     implementation "io.coil-kt:coil:2.2.2"
+
+    implementation 'androidx.security:security-crypto-ktx:1.1.0-alpha04'
 }
