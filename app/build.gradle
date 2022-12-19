@@ -44,6 +44,7 @@ android {
 }
 
 dependencies {
+    implementation project(':common-compose')
     implementation project(':base')
     implementation project(':data')
     implementation project(':domain')
