@@ -6,6 +6,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.navigation
 import com.example.base.Screens
 import com.example.ui.home.HomeScreen
+import com.example.ui.login.LoginScreen
+import com.example.ui.signup.SignupScreen
 import com.google.accompanist.navigation.animation.composable
 
 const val MAIN_NAV_GRAPH_ROUTE = "main"
@@ -19,6 +21,12 @@ fun NavGraphBuilder.mainNavGraph(
     navigation(startDestination = startDestination, route = MAIN_NAV_GRAPH_ROUTE) {
         composable(Screens.HomeScreen.route) {
             HomeScreen(navController)
+        }
+        composable(Screens.LoginScreen.route) {
+            LoginScreen(navController)
+        }
+        composable(Screens.SignupScreen.route) {
+            SignupScreen(navController)
         }
     }
 }

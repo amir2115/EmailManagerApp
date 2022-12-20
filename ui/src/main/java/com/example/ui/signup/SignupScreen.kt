@@ -1,4 +1,4 @@
-package com.example.ui.home
+package com.example.ui.signup
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -11,37 +11,37 @@ import androidx.navigation.NavController
 import collectAsState
 
 @Composable
-fun HomeScreen(navController: NavController) {
-    HomeScreen(
+fun SignupScreen(navController: NavController) {
+    SignupScreen(
         navController,
         hiltViewModel()
     )
 }
 
 @Composable
-internal fun HomeScreen(
+internal fun SignupScreen(
     navController: NavController,
-    viewModel: HomeViewModel
+    viewModel: SignupViewModel
 ) {
     val scaffoldState = rememberScaffoldState()
     val viewState by viewModel.collectAsState()
 
-    HomeScreen(
+    SignupScreen(
         scaffoldState = scaffoldState,
         viewState = viewState,
     ) { action ->
         when (action) {
-            is HomeAction.NavigateToScreen -> navController.navigate(action.route)
+            is SignupAction.NavigateToScreen -> navController.navigate(action.route)
             else -> viewModel.submitAction(action)
         }
     }
 }
 
 @Composable
-internal fun HomeScreen(
+internal fun SignupScreen(
     scaffoldState: ScaffoldState,
-    viewState: HomeState,
-    action: (HomeAction) -> Unit
+    viewState: SignupState,
+    action: (SignupAction) -> Unit
 ) {
     Scaffold(
         scaffoldState = scaffoldState,
