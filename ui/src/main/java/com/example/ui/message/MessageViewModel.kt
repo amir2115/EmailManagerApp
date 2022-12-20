@@ -1,23 +1,23 @@
-package com.example.ui.home
+package com.example.ui.message
 
 import androidx.lifecycle.viewModelScope
 import com.example.common_compose.base.BaseViewModel
-import com.example.domain.usecase.message.GetMessagesUseCase
+import com.example.domain.usecase.message.GetMessageUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-internal class HomeViewModel @Inject constructor(
-    private val getMessagesUseCase: GetMessagesUseCase
-) : BaseViewModel<HomeState, HomeAction>(HomeState()) {
+internal class MessageViewModel @Inject constructor(
+    private val getMessageUseCase: GetMessageUseCase
+) : BaseViewModel<MessageState, MessageAction>(MessageState()) {
 
     init {
-        getMessages()
+        getMessage()
 
         onEachAction { action ->
             when (action) {
-                is HomeAction.Refresh -> {
+                is MessageAction.Refresh -> {
 
                 }
                 else -> throw IllegalArgumentException("unknown action: $action")
@@ -25,12 +25,12 @@ internal class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun getMessages() {
+    private fun getMessage() {
         viewModelScope.launch {
             suspend {
-                getMessagesUseCase(Unit)
+                getMessageUseCase("")
             }.execute {
-                copy(messagesResponse = it)
+                copy(messageResponse = it)
             }
         }
     }
