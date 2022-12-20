@@ -8,6 +8,7 @@ import com.example.base.Screens
 import com.example.ui.home.HomeScreen
 import com.example.ui.login.LoginScreen
 import com.example.ui.message.MessageScreen
+import com.example.ui.profile.ProfileScreen
 import com.example.ui.signup.SignupScreen
 import com.google.accompanist.navigation.animation.composable
 
@@ -31,6 +32,9 @@ fun NavGraphBuilder.mainNavGraph(
         }
         composable(Screens.MessageScreen.route) {
             MessageScreen(navController)
+        }
+        composable(Screens.ProfileScreen.route) {
+            ProfileScreen(navController)
         }
     }
 }
