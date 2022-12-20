@@ -1,14 +1,16 @@
 package com.example.ui.login
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import collectAsState
+import com.example.ui.login.LoginViewModel.Companion.EMAIL_KEY
+import com.example.ui.login.LoginViewModel.Companion.PASSWORD_KEY
 
 @Composable
 fun LoginScreen(navController: NavController) {
@@ -47,8 +49,31 @@ internal fun LoginScreen(
         scaffoldState = scaffoldState,
         backgroundColor = MaterialTheme.colors.background
     ) {
-        Column(modifier = Modifier.padding(it)) {
-            Text(text = "Hi")
+        Column(
+            modifier = Modifier.padding(it),
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(text = "Login")
+            Spacer(modifier = Modifier.height(16.dp))
+            TextField(
+                value = viewState.email,
+                onValueChange = {
+                    action(LoginAction.OnValueChanged(EMAIL_KEY, it))
+                }
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            TextField(
+                value = viewState.password,
+                onValueChange = {
+                    action(LoginAction.OnValueChanged(PASSWORD_KEY, it))
+                }
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Button(onClick = {
+                action(LoginAction.Login)
+            }) {
+                Text(text = "Login")
+            }
         }
     }
 }

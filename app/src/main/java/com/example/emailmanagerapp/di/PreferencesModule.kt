@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import com.example.data.preferences.PreferencesStorageImpl
+import com.example.domain.preferences.PreferencesStorage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,5 +34,12 @@ object PreferencesModule {
             EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
             EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
         )
+    }
+
+    @Provides
+    fun providesPreference(
+        sharedPreferences: SharedPreferences
+    ): PreferencesStorage {
+        return PreferencesStorageImpl(sharedPreferences)
     }
 }

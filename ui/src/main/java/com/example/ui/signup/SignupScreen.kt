@@ -1,11 +1,11 @@
 package com.example.ui.signup
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import collectAsState
@@ -47,8 +47,31 @@ internal fun SignupScreen(
         scaffoldState = scaffoldState,
         backgroundColor = MaterialTheme.colors.background
     ) {
-        Column(modifier = Modifier.padding(it)) {
-            Text(text = "Hi")
+        Column(
+            modifier = Modifier.padding(it),
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(text = "Signup")
+            Spacer(modifier = Modifier.height(16.dp))
+            TextField(
+                value = viewState.email,
+                onValueChange = {
+                    action(SignupAction.OnValueChanged(SignupViewModel.EMAIL_KEY, it))
+                }
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            TextField(
+                value = viewState.password,
+                onValueChange = {
+                    action(SignupAction.OnValueChanged(SignupViewModel.PASSWORD_KEY, it))
+                }
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Button(onClick = {
+                action(SignupAction.Signup)
+            }) {
+                Text(text = "Signup")
+            }
         }
     }
 }
