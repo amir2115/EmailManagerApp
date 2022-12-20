@@ -8,7 +8,7 @@ import com.example.domain.usecase.ResultUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 
-class UserLoginUseCase @Inject constructor(
+class LoginUseCase @Inject constructor(
     @IoDispatcher dispatcher: CoroutineDispatcher,
     private val repository: AuthRepository
 ) : ResultUseCase<GetTokenRequest, GetTokenResponse>(dispatcher) {
