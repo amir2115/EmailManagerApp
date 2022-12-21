@@ -1,9 +1,7 @@
 package com.example.emailmanagerapp.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.navigation
+import androidx.navigation.*
 import com.example.base.Screens
 import com.example.ui.home.HomeScreen
 import com.example.ui.login.LoginScreen
@@ -30,7 +28,15 @@ fun NavGraphBuilder.mainNavGraph(
         composable(Screens.SignupScreen.route) {
             SignupScreen(navController)
         }
-        composable(Screens.MessageScreen.route) {
+        composable(
+            route = Screens.MessageScreen.route,
+            arguments = listOf(
+                navArgument("id") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                }
+            )
+        ) {
             MessageScreen(navController)
         }
         composable(Screens.ProfileScreen.route) {

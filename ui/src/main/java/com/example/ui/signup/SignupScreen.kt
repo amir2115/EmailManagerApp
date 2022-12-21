@@ -1,14 +1,18 @@
 package com.example.ui.signup
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import collectAsState
+import com.example.base.Screens
+import com.example.common_compose.theme.WHITE_100
 
 @Composable
 fun SignupScreen(navController: NavController) {
@@ -48,29 +52,80 @@ internal fun SignupScreen(
         backgroundColor = MaterialTheme.colors.background
     ) {
         Column(
-            modifier = Modifier.padding(it),
-            verticalArrangement = Arrangement.Center
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(it)
+                .padding(32.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Signup")
+            Text(
+                text = "Signup",
+                style = MaterialTheme.typography.h4,
+                color = MaterialTheme.colors.secondary
+            )
             Spacer(modifier = Modifier.height(16.dp))
             TextField(
+                modifier = Modifier.fillMaxWidth(),
                 value = viewState.email,
+                label = {
+                    Text(
+                        text = "email",
+                        style = MaterialTheme.typography.body1,
+                        color = MaterialTheme.colors.secondary
+                    )
+                },
+                trailingIcon = {
+                    Text(
+                        text = "@gmail.com",
+                        style = MaterialTheme.typography.body1,
+                        color = MaterialTheme.colors.secondary
+                    )
+                },
                 onValueChange = {
                     action(SignupAction.OnValueChanged(SignupViewModel.EMAIL_KEY, it))
                 }
             )
             Spacer(modifier = Modifier.height(8.dp))
             TextField(
+                modifier = Modifier.fillMaxWidth(),
                 value = viewState.password,
+                label = {
+                    Text(
+                        text = "password",
+                        style = MaterialTheme.typography.body1,
+                        color = MaterialTheme.colors.secondary
+                    )
+                },
                 onValueChange = {
                     action(SignupAction.OnValueChanged(SignupViewModel.PASSWORD_KEY, it))
                 }
             )
             Spacer(modifier = Modifier.height(8.dp))
-            Button(onClick = {
-                action(SignupAction.Signup)
-            }) {
-                Text(text = "Signup")
+            Button(
+                modifier = Modifier.fillMaxWidth(),
+                onClick = {
+                    action(SignupAction.Signup)
+                }) {
+                Text(
+                    text = "Signup",
+                    style = MaterialTheme.typography.body1,
+                    color = WHITE_100
+                )
+            }
+            Spacer(modifier = Modifier.height(8.dp))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable {
+                        action(SignupAction.NavigateToScreen(Screens.LoginScreen.route))
+                    }
+            ) {
+                Text(
+                    text = "Already have an account? Click to login",
+                    style = MaterialTheme.typography.body2,
+                    color = MaterialTheme.colors.secondary
+                )
             }
         }
     }

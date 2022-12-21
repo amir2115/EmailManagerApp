@@ -5,5 +5,6 @@ import com.example.base.Uninitialized
 import com.example.domain.model.message.GetMessageResponse
 
 internal data class MessageState(
-    val messageResponse: AsyncResult<GetMessageResponse> = Uninitialized
+    val messageResponse: AsyncResult<GetMessageResponse> = Uninitialized,
+    val id: String = ""
 )
