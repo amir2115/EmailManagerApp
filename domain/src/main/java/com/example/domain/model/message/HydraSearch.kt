@@ -1,16 +1,16 @@
 package com.example.domain.model.message
 
-import kotlinx.serialization.SerialName
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class HydraSearch(
-    @SerialName("@type")
+    @SerializedName("@type")
     val type: String,
-    @SerialName("hydra:mapping")
+    @SerializedName("hydra:mapping")
     val mapping: List<HydraMapping>,
-    @SerialName("hydra:template")
+    @SerializedName("hydra:template")
     val template: String,
-    @SerialName("hydra:variableRepresentation")
+    @SerializedName("hydra:variableRepresentation")
     val variableRepresentation: String
 )

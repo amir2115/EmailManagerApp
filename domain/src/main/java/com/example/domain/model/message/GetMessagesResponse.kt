@@ -1,16 +1,16 @@
 package com.example.domain.model.message
 
-import kotlinx.serialization.SerialName
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class GetMessagesResponse(
-    @SerialName("hydra:member")
+    @SerializedName("hydra:member")
     val member: List<HydraMember>,
-    @SerialName("hydra:search")
+    @SerializedName("hydra:search")
     val search: HydraSearch?,
-    @SerialName("hydra:totalItems")
+    @SerializedName("hydra:totalItems")
     val totalItems: Int,
-    @SerialName("hydra:view")
+    @SerializedName("hydra:view")
     val view: HydraView?
 )

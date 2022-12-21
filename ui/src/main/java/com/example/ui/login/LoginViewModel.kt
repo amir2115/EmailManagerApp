@@ -1,5 +1,6 @@
 package com.example.ui.login
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.common_compose.base.BaseViewModel
 import com.example.domain.model.auth.GetTokenRequest
@@ -10,8 +11,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class LoginViewModel @Inject constructor(
-    private val loginUseCase: LoginUseCase
-) : BaseViewModel<LoginState, LoginAction>(LoginState()) {
+    private val loginUseCase: LoginUseCase,
+    savedStateHandle: SavedStateHandle
+) : BaseViewModel<LoginState, LoginAction>(
+    LoginState(
+        email = savedStateHandle.get<String>("email")!!,
+        password = savedStateHandle.get<String>("password")!!,
+    )
+) {
 
     init {
         onEachAction { action ->

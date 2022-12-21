@@ -1,11 +1,11 @@
 package com.example.domain.model.message
 
-import kotlinx.serialization.SerialName
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class HydraMapping(
-    @SerialName("@type")
+    @SerializedName("@type")
     val type: String,
     val `property`: String,
     val required: Boolean,

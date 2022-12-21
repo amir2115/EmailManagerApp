@@ -1,16 +1,17 @@
 package com.example.ui.message
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -33,6 +34,10 @@ internal fun MessageScreen(
 ) {
     val scaffoldState = rememberScaffoldState()
     val viewState by viewModel.collectAsState()
+
+    if (viewState.deleteMessageResponse is Success) {
+        navController.navigateUp()
+    }
 
     MessageScreen(
         scaffoldState = scaffoldState,
@@ -59,6 +64,7 @@ internal fun MessageScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(rememberScrollState())
                 .padding(it)
                 .padding(16.dp),
         ) {
@@ -91,13 +97,73 @@ internal fun MessageScreen(
                     )
                     Image(
                         modifier = Modifier.size(16.dp),
-                        painter = painterResource(R.drawable.ic_start),
+                        painter = painterResource(R.drawable.ic_star_outlined),
                         contentDescription = null
                     )
                 }
             }
             Spacer(modifier = Modifier.height(16.dp))
-
+            AnimatedVisibility(visible = viewState.messageResponse is Success) {
+                viewState.messageResponse()?.let { message ->
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Image(
+                            modifier = Modifier.size(32.dp),
+                            painter = painterResource(R.drawable.profile_1),
+                            contentDescription = null
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Column(modifier = Modifier.weight(1F)) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Text(
+                                    text = message.from.address,
+                                    style = MaterialTheme.typography.body1,
+                                    color = MaterialTheme.colors.secondary,
+                                )
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Text(
+                                    text = "May 6",
+                                    style = MaterialTheme.typography.caption,
+                                    color = MaterialTheme.colors.secondary,
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Text(
+                                    text = "to me",
+                                    style = MaterialTheme.typography.caption,
+                                    color = MaterialTheme.colors.secondary,
+                                )
+                                Spacer(modifier = Modifier.width(4.dp))
+                                Image(
+                                    painter = painterResource(R.drawable.ic_arrow_down),
+                                    contentDescription = null
+                                )
+                            }
+                        }
+                        FixedSizeImage(painterResource(R.drawable.ic_replay))
+                        FixedSizeImage(painterResource(R.drawable.ic_more))
+                    }
+                }
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .aspectRatio(0.5F)
+                    .background(Color(0xFFD7D7D7))
+            ) {
+                Text(
+                    text = "Place AD Mockup Here\n" +
+                            "(\\^.^/)",
+                    style = MaterialTheme.typography.h6,
+                    color = MaterialTheme.colors.secondary,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.align(Alignment.Center)
+                )
+            }
         }
     }
 }

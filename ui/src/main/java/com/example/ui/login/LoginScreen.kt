@@ -74,8 +74,9 @@ internal fun LoginScreen(
             Spacer(modifier = Modifier.height(16.dp))
             TextField(
                 modifier = Modifier.fillMaxWidth(),
+                colors = TextFieldDefaults.textFieldColors(textColor = MaterialTheme.colors.secondary),
                 value = viewState.email,
-                label = {
+                placeholder = {
                     Text(
                         text = "email",
                         style = MaterialTheme.typography.body1,
@@ -89,8 +90,9 @@ internal fun LoginScreen(
             Spacer(modifier = Modifier.height(8.dp))
             TextField(
                 modifier = Modifier.fillMaxWidth(),
+                colors = TextFieldDefaults.textFieldColors(textColor = MaterialTheme.colors.secondary),
                 value = viewState.password,
-                label = {
+                placeholder = {
                     Text(
                         text = "password",
                         style = MaterialTheme.typography.body1,

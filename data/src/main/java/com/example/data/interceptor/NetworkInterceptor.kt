@@ -20,14 +20,14 @@ class NetworkInterceptor @Inject constructor(
             val response = chain.proceed(chain.request())
             when (response.code) {
                 401 -> {
-                    response.body?.let {
-                        Toast.makeText(context, it.string(), Toast.LENGTH_SHORT).show()
-                    }
                     sharedPreferences.signOut()
+                    response.body?.let {
+                        Toast.makeText(context, it.toString(), Toast.LENGTH_SHORT).show()
+                    }
                 }
                 in 300..600 -> {
                     response.body?.let {
-                        Toast.makeText(context, it.string(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, it.toString(), Toast.LENGTH_SHORT).show()
                     }
                 }
             }

@@ -1,5 +1,6 @@
 package com.example.ui.signup
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -12,6 +13,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import collectAsState
 import com.example.base.Screens
+import com.example.base.Success
 import com.example.common_compose.theme.WHITE_100
 
 @Composable
@@ -29,6 +31,15 @@ internal fun SignupScreen(
 ) {
     val scaffoldState = rememberScaffoldState()
     val viewState by viewModel.collectAsState()
+
+    if (viewState.signupResponse is Success) {
+        navController.navigate(
+            Screens.LoginScreen.createRoute(
+                "${viewState.email}@${viewState.domain}",
+                viewState.password
+            )
+        )
+    }
 
     SignupScreen(
         scaffoldState = scaffoldState,
@@ -68,7 +79,8 @@ internal fun SignupScreen(
             TextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = viewState.email,
-                label = {
+                colors = TextFieldDefaults.textFieldColors(textColor = MaterialTheme.colors.secondary),
+                placeholder = {
                     Text(
                         text = "email",
                         style = MaterialTheme.typography.body1,
@@ -76,11 +88,14 @@ internal fun SignupScreen(
                     )
                 },
                 trailingIcon = {
-                    Text(
-                        text = "@gmail.com",
-                        style = MaterialTheme.typography.body1,
-                        color = MaterialTheme.colors.secondary
-                    )
+                    AnimatedVisibility(viewState.domain.isNotEmpty()) {
+                        Text(
+                            text = "@${viewState.domain}",
+                            style = MaterialTheme.typography.body1,
+                            color = MaterialTheme.colors.secondary,
+                            modifier = Modifier.padding(end = 8.dp)
+                        )
+                    }
                 },
                 onValueChange = {
                     action(SignupAction.OnValueChanged(SignupViewModel.EMAIL_KEY, it))
@@ -89,8 +104,9 @@ internal fun SignupScreen(
             Spacer(modifier = Modifier.height(8.dp))
             TextField(
                 modifier = Modifier.fillMaxWidth(),
+                colors = TextFieldDefaults.textFieldColors(textColor = MaterialTheme.colors.secondary),
                 value = viewState.password,
-                label = {
+                placeholder = {
                     Text(
                         text = "password",
                         style = MaterialTheme.typography.body1,

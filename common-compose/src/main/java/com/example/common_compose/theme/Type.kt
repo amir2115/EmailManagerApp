@@ -57,7 +57,7 @@ val typography = Typography(
     ),
     body2 = TextStyle(
         fontFamily = FontFamily.SansSerif,
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.Medium,
         fontSize = 11.sp,
         lineHeight = 16.sp,
         textDirection = TextDirection.Content
@@ -71,15 +71,15 @@ val typography = Typography(
     ),
     caption = TextStyle(
         fontFamily = FontFamily.SansSerif,
-        fontWeight = FontWeight.ExtraBold,
-        fontSize = 14.sp,
+        fontWeight = FontWeight.Medium,
+        fontSize = 12.sp,
         lineHeight = 16.sp,
         textDirection = TextDirection.Content
     ),
     overline = TextStyle(
         fontFamily = FontFamily.SansSerif,
-        fontWeight = FontWeight.Bold,
-        fontSize = 11.sp,
+        fontWeight = FontWeight.Medium,
+        fontSize = 10.sp,
         lineHeight = 0.sp,
         textDirection = TextDirection.Content
 

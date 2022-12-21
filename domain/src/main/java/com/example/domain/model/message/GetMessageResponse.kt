@@ -1,13 +1,13 @@
 package com.example.domain.model.message
 
-import kotlinx.serialization.SerialName
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class GetMessageResponse(
-    @SerialName("@context")
+    @SerializedName("@context")
     val context: String,
-    @SerialName("@type")
+    @SerializedName("@type")
     val type: String,
     val accountId: String,
     val attachments: List<Attachment>,

@@ -2,6 +2,7 @@ package com.example.ui.home
 
 import androidx.lifecycle.viewModelScope
 import com.example.common_compose.base.BaseViewModel
+import com.example.domain.preferences.PreferencesStorage
 import com.example.domain.usecase.message.GetMessagesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -9,7 +10,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class HomeViewModel @Inject constructor(
-    private val getMessagesUseCase: GetMessagesUseCase
+    private val getMessagesUseCase: GetMessagesUseCase,
+    private val sharedPreferences: PreferencesStorage
 ) : BaseViewModel<HomeState, HomeAction>(HomeState()) {
 
     init {
@@ -18,7 +20,10 @@ internal class HomeViewModel @Inject constructor(
         onEachAction { action ->
             when (action) {
                 is HomeAction.Refresh -> {
-
+                    getMessages()
+                }
+                is HomeAction.Logout -> {
+                    sharedPreferences.signOut()
                 }
                 else -> throw IllegalArgumentException("unknown action: $action")
             }

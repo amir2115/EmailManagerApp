@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import collectAsState
@@ -16,6 +17,7 @@ import com.example.domain.preferences.PreferencesStorage
 import com.example.emailmanagerapp.navigation.AppNavigation
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -38,7 +40,13 @@ class MainActivity : AppCompatActivity() {
                 CompositionLocalProvider(
                     LocalBackPressedDispatcher provides onBackPressedDispatcher
                 ) {
-                    val startDestination = if (token.value.isNotEmpty()) {
+                    LaunchedEffect(token.value) {
+                        if (token.value.isEmpty()) {
+                            delay(200)
+                            navController.navigate(Screens.LoginScreen.route)
+                        }
+                    }
+                    val startDestination = if (viewState.token.isNotEmpty()) {
                         Screens.HomeScreen.route
                     } else {
                         Screens.LoginScreen.route

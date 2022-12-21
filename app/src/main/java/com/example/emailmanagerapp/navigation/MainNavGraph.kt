@@ -22,7 +22,19 @@ fun NavGraphBuilder.mainNavGraph(
         composable(Screens.HomeScreen.route) {
             HomeScreen(navController)
         }
-        composable(Screens.LoginScreen.route) {
+        composable(
+            route = Screens.LoginScreen.route,
+            arguments = listOf(
+                navArgument("email") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                },
+                navArgument("password") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                }
+            )
+        ) {
             LoginScreen(navController)
         }
         composable(Screens.SignupScreen.route) {

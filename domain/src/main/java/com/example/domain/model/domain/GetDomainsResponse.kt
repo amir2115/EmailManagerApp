@@ -1,10 +1,10 @@
 package com.example.domain.model.domain
 
-import kotlinx.serialization.SerialName
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class GetDomainsResponse(
-    @SerialName("hydra:member")
+    @SerializedName("hydra:member")
     val member: List<HydraMember>,
 )

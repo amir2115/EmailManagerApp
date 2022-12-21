@@ -1,20 +1,20 @@
 package com.example.domain.model.message
 
-import kotlinx.serialization.SerialName
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class HydraView(
-    @SerialName("@id")
+    @SerializedName("@id")
     val id: String,
-    @SerialName("@type")
+    @SerializedName("@type")
     val type: String,
-    @SerialName("hydra:first")
+    @SerializedName("hydra:first")
     val first: String,
-    @SerialName("hydra:last")
+    @SerializedName("hydra:last")
     val last: String,
-    @SerialName("hydra:next")
+    @SerializedName("hydra:next")
     val next: String,
-    @SerialName("hydra:previous")
+    @SerializedName("hydra:previous")
     val previous: String
 )

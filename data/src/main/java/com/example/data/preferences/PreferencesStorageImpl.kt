@@ -23,11 +23,11 @@ class PreferencesStorageImpl @Inject constructor(
         set(_) = throw IllegalAccessException("This property can't be changed")
 
     override fun clearData() {
-        tokenCode = null
+        tokenCode = ""
     }
 
     override fun signOut() {
-        tokenCode = null
+        tokenCode = ""
     }
 
     companion object PreferencesKey {

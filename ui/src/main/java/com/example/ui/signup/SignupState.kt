@@ -8,5 +8,6 @@ internal data class SignupState(
     val domainsResponse: AsyncResult<GetDomainsResponse> = Uninitialized,
     val signupResponse: AsyncResult<Unit> = Uninitialized,
     val email: String = "",
+    val domain: String = "",
     val password: String = ""
 )

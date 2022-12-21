@@ -4,12 +4,14 @@ import com.example.domain.model.message.*
 
 val mockMessagesData = GetMessagesResponse(
     member = listOf(
-        generateMessage(),
-        generateMessage(),
-        generateMessage(),
-        generateMessage(),
-        generateMessage(),
-        generateMessage(),
+        generateMessage("Random Bank Online", "Time to check your bank information an.."),
+        generateMessage("Fortune Company co.", "Make sure you receive these."),
+        generateMessage("Stephanie Everhill", "I would meet at the Western Mall if you.."),
+        generateMessage("Taylor Grey", "Hey what was our timesheet that was for.."),
+        generateMessage(
+            "UniqueYou by SecretKissShop",
+            "Now is great time to shop great new fash.."
+        ),
     ),
     totalItems = 0,
     search = null,
@@ -51,7 +53,7 @@ val mockMessageData = GetMessageResponse(
     verifications = listOf()
 )
 
-private fun generateMessage(): HydraMember {
+private fun generateMessage(subject: String, intro: String): HydraMember {
     return HydraMember(
         context = "String",
         type = "String",
@@ -64,12 +66,12 @@ private fun generateMessage(): HydraMember {
         ),
         hasAttachments = false,
         id = "String",
-        intro = "Time to check your bank information an..",
+        intro = intro,
         isDeleted = false,
         msgid = "String",
         seen = false,
         size = 0,
-        subject = "Random Bank Online",
+        subject = subject,
         to = listOf(
             To(
                 address = "safrg",

@@ -25,6 +25,12 @@ internal class SignupViewModel @Inject constructor(
                 else -> throw IllegalArgumentException("unknown action: $action")
             }
         }
+
+        onAsyncResult(SignupState::domainsResponse) {
+            it.member.firstOrNull()?.let {
+                setState { copy(domain = it.domain) }
+            }
+        }
     }
 
     private fun onValueChanged(key: Int, value: String) {
@@ -48,7 +54,7 @@ internal class SignupViewModel @Inject constructor(
         viewModelScope.launch {
             suspend {
                 val params = AddAccountRequest(
-                    address = state.email,
+                    address = "${state.email}@${state.domain}",
                     password = state.password
                 )
                 registerUseCase(params)

@@ -1,13 +1,13 @@
 package com.example.domain.model.account
 
-import kotlinx.serialization.SerialName
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class CreateAccountResponse(
-    @SerialName("@context")
+    @SerializedName("@context")
     val context: String,
-    @SerialName("@type")
+    @SerializedName("@type")
     val type: String,
     val address: String,
     val createdAt: String,
